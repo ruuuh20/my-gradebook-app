@@ -1,6 +1,6 @@
 <% if current_user.admin? %>
   <% @courses.each do |c| %>
-    <h2> <%= c.name %> </h2>
+    <h3> <%= c.name %> - Code: <%= c.code %> </h3>
     <%= link_to "Show", semester_course_path(@semester.id, c.id) %> | <%= link_to "Edit", edit_semester_course_path(@semester.id, c.id) %> | <%= link_to "Delete", semester_course_path(@semester.id, c.id), :method => 'delete' %>
   <% end %>
   <h3><%= link_to "Create New", new_semester_course_path(@semester.id, @course) %></h3>

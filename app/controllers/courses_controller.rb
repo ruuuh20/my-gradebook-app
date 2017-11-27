@@ -10,14 +10,14 @@ class CoursesController < ApplicationController
   end
 
   def new
-    @semester = Semester.find(params[:id])
-    @course = @semester.courses.build(course_params)
+    @semester = Semester.find(params[:semester_id])
+    @course = @semester.courses.build
   end
 
 
   def create
     @course = Course.new(course_params)
-    @semester = Semester.find(params[:id])
+    @semester = Semester.find(params[:semester_id])
     @course.semester_id = @semester.id
     if @course.save
       flash[:success] = "Successfully created"
@@ -30,14 +30,40 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @semester =  Semester.find(params[:semester_id])
   end
+
+  def edit
+    @course = Course.find(params[:id])
+    @semester = Semester.find(params[:semester_id])
+  end
+
+  def update
+    @course = Course.find(params[:id])
+    @semester = Semester.find(params[:semester_id])
+    if @course.update(course_params)
+      @course.save
+      flash[:success] = "Course Updated"
+      redirect_to semester_course_path(@semester.id, @course.id)
+    else
+      flash[:error] = "There was an error"
+      render "courses/new"
+    end
+  end
+
 
 
   def destroy
+    @semester = Semester.find(params[:semester_id])
     @course = Course.find(params[:id])
     @course.destroy
-    flash[:notice] = "Deleted"
-    redirect_to root_path
+    flash[:notice] = "Successfully deleted"
+    redirect_to semester_courses_path(@semester)
   end
+
+  private
+    def course_params
+      params.require(:course).permit(:name, :code, :semester_id)
+    end
 
 end

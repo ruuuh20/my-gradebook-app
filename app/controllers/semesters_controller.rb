@@ -33,8 +33,8 @@ class SemestersController < ApplicationController
   def destroy
     @semester = Semester.find(params[:id])
     @semester.destroy
-    flash[:success] = "Deleted"
-    redirect_to semesters_path
+    # flash[:success] = "Deleted"
+    redirect_to semesters_path, :alert => "Deleted"
   end
 
 
