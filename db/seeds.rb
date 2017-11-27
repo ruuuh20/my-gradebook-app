@@ -18,7 +18,11 @@ guardian1 = User.create(:email => "iamguardian@example.com",
             :password => "password",
             :role => :guardian)
 
-semester1 = Semester.create(:name => "Fall")
-semester2 = Semester.create(:name => "Winter")
-semester3 = Semester.create(:name => "Spring")
-semester4 = Semester.create(:name => "Summer")
+semester1 = Semester.create(:name => "Fall 2017")
+semester2 = Semester.create(:name => "Winter 2017")
+semester3 = Semester.create(:name => "Spring 2018")
+semester4 = Semester.create(:name => "Summer 2018")
+
+
+course1 = Course.create(:name => "English A", :code => 123, :semester_id => 1)
+course2 = Course.create(:name => "Math A", :code => 456, :semester_id => 2)
