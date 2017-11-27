@@ -1,0 +1,13 @@
+<h3>Edit Information</h3>
+
+<%= form_for @semester do |f| %>
+<div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+
+
+<div class="field">
+  <%= f.submit 'Update'%>
+</div>
+<% end %>

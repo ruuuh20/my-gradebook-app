@@ -20,7 +20,7 @@ class CoursesController < ApplicationController
     @semester = Semester.find(params[:semester_id])
     @course.semester_id = @semester.id
     if @course.save
-      flash[:success] = "Successfully created"
+      flash[:notice] = "Course created"
       redirect_to semester_course_path(@semester.id, @course.id)
     else
       flash[:error] = "error"
@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
     @semester = Semester.find(params[:semester_id])
     if @course.update(course_params)
       @course.save
-      flash[:success] = "Course Updated"
+      flash[:notice] = "Course Updated"
       redirect_to semester_course_path(@semester.id, @course.id)
     else
       flash[:error] = "There was an error"

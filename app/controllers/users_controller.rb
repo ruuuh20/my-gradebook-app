@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
-  
+
 
   def index
     @users = User.all
@@ -12,6 +12,13 @@ class UsersController < ApplicationController
     if !current_user.admin? && current_user != @user
       flash[:notice] = 'Access denied'
       redirect_to root_path
+    end
+
+  end
+
+  def dashboard
+    if current_user.student?
+      @courses = current_user.courses
     end
 
   end

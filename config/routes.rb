@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :semesters do
     resources :courses
   end
+
+  get '/dashboard' => 'users#dashboard'
 end
