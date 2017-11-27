@@ -28,6 +28,10 @@ class CoursesController < ApplicationController
     end
   end
 
+  def show
+    @course = Course.find(params[:id])
+  end
+
 
   def destroy
     @course = Course.find(params[:id])

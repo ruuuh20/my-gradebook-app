@@ -1,1 +1,4 @@
-Here are the courses for <%= @semester.name %>
+Current courses for <%= @semester.name %><br>
+Current enrollments: <br>
+
+<%= link_to "Go to list of courses", semester_courses_path(@semester) %>
