@@ -10,7 +10,8 @@
           <li>ADMIN</li>
           <li><%= link_to "Semester", semesters_path %></li>
         <% elsif current_user.student? %>
-          <li>Student!</li>
+          <li>STUDENT</li>
+          <li><%= link_to "Semester", semesters_path %></li>
         <% end %>
         <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
       <% else %>
