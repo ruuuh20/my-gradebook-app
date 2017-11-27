@@ -22,7 +22,7 @@ class SemestersController < ApplicationController
       redirect_to semesters_path
     else
       flash[:error] = "There was an error"
-      redirect_to root_path
+      render 'semesters/new'
     end
   end
 
