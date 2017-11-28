@@ -13,6 +13,13 @@ class User < ApplicationRecord
   has_many :registrations
   has_many :courses, through: :registrations
 
+  def courses_attributes=(course_attributes)
+    course_attributes.values.each do |course_attribute|
+      course = Course.find_or_create_by(course_attribute)
+      self.courses.build(course: course)
+    end
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
      user.email = auth.info.email
