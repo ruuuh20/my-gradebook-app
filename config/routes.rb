@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :semesters do
     resources :courses
   end
+  get '/courses' => 'courses#all_index'
 
   get '/dashboard' => 'users#dashboard'
   get '/enrollments' => 'users#enrollments'
   get '/enrollments/new' => 'users#new'
+  match 'enrollments/new' => 'users#savenew', via: :post
 end

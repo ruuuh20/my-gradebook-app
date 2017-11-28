@@ -2,9 +2,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :recoverable, :rememberable, :trackable,
          :omniauthable, :omniauth_providers => [:facebook]
-
+            # :validatable,
   enum :role => [:admin, :student, :guardian, :teacher]
 
   #hook
@@ -13,10 +13,17 @@ class User < ApplicationRecord
   has_many :registrations
   has_many :courses, through: :registrations
 
+  # for admin to create user
+  def self.create_new_user(params)
+    User.create!(params)
+
+  end
+
   def courses_attributes=(course_attributes)
     course_attributes.values.each do |course_attribute|
       course = Course.find_or_create_by(course_attribute)
-      self.courses.build(course: course)
+      # self.courses.build(course_attributes)
+      self.courses << course unless course.name.empty?
     end
   end
 

@@ -17,17 +17,26 @@ class UsersController < ApplicationController
 
   end
 
-  #for admin to create user?
-  def new
-    @user = User.new
-    @user.courses.build
-    render 'registrations/new'
+#for admin
+
+def new
+  @user = User.new
+  render 'registrations/new'
+end
+
+  def savenew
+    @user = User.create_new_user(user_params)
+    # binding.pry
+    if @user.save
+      flash[:alert] = "User created."
+      redirect_to @user
+    else
+      flash[:error] = "There was an error"
+      render 'registrations/new'
+   end
+
   end
 
-  def create
-    @user = User.create(user_params)
-    redirect_to @user
-  end
 
   def dashboard
   @semesters = Semester.all
@@ -37,20 +46,17 @@ class UsersController < ApplicationController
       @users = User.all
       @courses = Course.all
     end
-
-
-
   end
 
   def enrollments
     # binding.pry
     @registrations = Registration.all
-
+    # binding.pry
     render 'registrations/index'
   end
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, course_ids:[], courses_attributes: [:name])
+      params.require(:user).permit(:email, :password, :role, course_ids:[], courses_attributes: [:name])
     end
 end

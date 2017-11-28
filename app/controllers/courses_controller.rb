@@ -9,6 +9,11 @@ class CoursesController < ApplicationController
     @all_courses = Course.all
   end
 
+  #for admin to see all courses ?????
+  def all_index
+    @all_courses = Course.all
+  end
+
   def new
     @semester = Semester.find(params[:semester_id])
     @course = @semester.courses.build
