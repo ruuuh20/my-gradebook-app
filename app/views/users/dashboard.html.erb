@@ -6,6 +6,7 @@
   Student accounts: <%= User.student.count %><br>
   Teacher accounts: <%= User.teacher.count %><br>
   Guardian accounts: <%= User.guardian.count %><br>
+  <%= link_to "See all users", users_path %>
   <%= link_to "Current Enrollments", enrollments_path(current_user) %>
 <% else %>
   Currently Enrolled Courses:

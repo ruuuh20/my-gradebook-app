@@ -1,7 +1,52 @@
-table
+<h3>Enrollments (Registrations)</h3>
+<table>
+  <tr>
+    <th>User ID</th>
+    <th>Course ID</th>
+  </tr>
+  <% @registrations.each do |r| %>
+    <tr>
+      <td><%= r.user_id %></td>
+      <td><%= r.course_id %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Users</h3>
+<table>
+  <tr>
+    <th>Email</th>
+    <th>ID</th>
+    <th>Course ID</th>
+  </tr>
+  <% @users.each do |u| %>
+    <tr>
+      <td><%= u.email %></td>
+      <td><%= u.id %></td>
+
+      <% u.courses.each do |cc| %>
+        <td><%= cc.id %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
 
 
-<% @registrations.each do |r| %>
-  <%= r.user_id %>
-<% end %>
-<%= link_to "New", enrollments_new_path %>
+<h3>Courses</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+  </tr>
+
+    <% @courses.each do |c| %>
+      <tr>
+        <td><%= c.name %></td>
+        <td><%= c.code %></td>
+      </tr>
+    <% end %>
+</table>
+<br>
+<br>
+
+<%= link_to "Create new enrollment", enrollments_new_path %>

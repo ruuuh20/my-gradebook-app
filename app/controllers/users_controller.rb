@@ -51,6 +51,8 @@ end
   def enrollments
     # binding.pry
     @registrations = Registration.all
+    @users = User.all
+    @courses = Course.all
     # binding.pry
     render 'registrations/index'
   end
