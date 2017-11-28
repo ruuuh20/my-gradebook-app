@@ -11,18 +11,21 @@
 
   <nav>
     <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Go To Courses", semesters_path %></li>
 
       <% if user_signed_in? %>
 
 
         <% if current_user.admin? %>
+          <li><%= link_to "Enrollments", enrollments_path(current_user) %></li>
 
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Semesters", semesters_path %></li>
+
+
         <% elsif current_user.student? %>
 
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Semesters", semesters_path %></li>
+
+
         <% elsif current_user.guardian? %>
           <li>GUARDIAN</li>
         <% end %>

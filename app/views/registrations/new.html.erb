@@ -1,0 +1,33 @@
+<%= form_for @user do |f| %>
+  <div class="field">
+    <%= f.label "Email" %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label "Password" %>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label "Select the user's role" %>
+    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+  </div>
+  <div class="col-md-4 checkbox-list">
+    <%= f.collection_check_boxes(:course_ids, Course.all, :id, :name) do |b| %>
+      <div class="form-check">
+        <%= b.label(class: "check_box") do %>
+          <div class="row">
+            <%= b.check_box(class: "check_box") %>
+          </div>
+
+          <div>
+            <%= b.object.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -5,7 +5,7 @@ def after_sign_in_path_for(resource)
   request.env['omniauth.origin'] || root_path
 end
 
-def admin_only
+def must_be_admin
   unless current_user.admin?
     redirect_to root_path, :alert => "Access denied"
   end

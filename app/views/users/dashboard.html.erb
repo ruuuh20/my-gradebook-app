@@ -1,1 +1,19 @@
 <h2>My Dashboard</h2>
+
+<div class="container">
+
+<% if current_user.admin?  %>
+  Student accounts: <%= User.student.count %><br>
+  Teacher accounts: <%= User.teacher.count %><br>
+  Guardian accounts: <%= User.guardian.count %><br>
+  <%= link_to "Current Enrollments", enrollments_path(current_user) %>
+<% else %>
+  Currently Enrolled Courses:
+
+
+<% end %>
+
+
+
+
+</div>

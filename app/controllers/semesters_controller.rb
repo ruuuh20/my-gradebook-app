@@ -1,7 +1,7 @@
 class SemestersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :admin_only, :except => [:index, :show]
+  before_action :must_be_admin, :except => [:index, :show]
 
   # @SEMESTER_LIST = ['Fall, Spring, Summer']
 

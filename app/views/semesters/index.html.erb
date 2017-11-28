@@ -1,12 +1,13 @@
 
+<h1>Choose Semester:</h1>
 <% if current_user.admin? %>
   <% @semesters.each do |sem| %>
-    <h2> <%= sem.name %> </h2>
+    <h3> <%= sem.name %> </h3>
     <%= link_to "Show", semester_path(sem) %> | <%= link_to "Edit", edit_semester_path(sem) %> | <%= link_to "Delete", semester_path(sem), :method => 'delete' %>
   <% end %>
-  <h2><%= link_to "Create New", new_semester_path %></h2>
+  <h3><%= link_to "Create New", new_semester_path %></h3>
 <% else %>
   <% @semesters.each do |sem| %>
-    <h2><%= link_to "#{sem.name}", semester_path(sem) %></h2>
+    <h3><%= link_to "#{sem.name}", semester_path(sem) %></h3>
   <% end %>
 <% end %>

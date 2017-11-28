@@ -25,4 +25,6 @@ semester4 = Semester.create(:name => "Summer 2018")
 
 
 course1 = Course.create(:name => "English A", :code => 123, :semester_id => 1)
-course2 = Course.create(:name => "Math A", :code => 456, :semester_id => 2)
+course2 = Course.create(:name => "Math A", :code => 456, :semester_id => 1)
+course3 = Course.create(:name => "Writing A", :code => 202, :semester_id => 2)
+course4 = Course.create(:name => "Math B", :code => 111, :semester_id => 2)

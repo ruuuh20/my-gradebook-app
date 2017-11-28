@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   end
 
   get '/dashboard' => 'users#dashboard'
+  get '/enrollments' => 'users#enrollments'
+  get '/enrollments/new' => 'users#new'
 end
