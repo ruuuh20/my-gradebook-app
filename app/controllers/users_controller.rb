@@ -2,6 +2,7 @@ require 'pry'
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :must_be_admin, :except => :dashboard
 
 
   def index

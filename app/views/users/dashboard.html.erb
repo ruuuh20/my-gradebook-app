@@ -8,8 +8,15 @@
   Guardian accounts: <%= User.guardian.count %><br>
   <%= link_to "See all users", users_path %>
   <%= link_to "Current Enrollments", enrollments_path(current_user) %>
-<% else %>
-  Currently Enrolled Courses:
+<% elsif current_user.student? || current_user.guardian? %>
+
+  <h4>Enrolled in (<%= @courses.count %>) courses:</h4>
+  <ul>
+    <% @courses.each do |c| %>
+      <li><%= link_to "#{c.name}", semester_course_path(c.semester_id, c.id) %></li>
+    <% end %>
+  </ul>
+
 
 
 <% end %>
