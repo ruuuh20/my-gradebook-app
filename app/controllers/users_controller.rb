@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   end
 
 #for admin
-
 def new
   @user = User.new
   render 'registrations/new'
@@ -34,9 +33,23 @@ end
     else
       flash[:error] = "There was an error"
       render 'registrations/new'
-   end
-
+    end
   end
+
+def edit
+  @user = User.find(params[:id])
+end
+
+def update
+  @user = User.find(params[:id])
+  if @user.update_attributes(user_params)
+    flash[:notice] = "User updated"
+    redirect_to users_path
+  else
+    flash[:error] = "There was an error"
+    render 'users/edit'
+  end
+end
 
 
   def dashboard
