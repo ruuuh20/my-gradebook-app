@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users
   resources :semesters do
-    resources :courses
+    resources :courses do
+      resources :assignments
+    end
   end
   get '/courses' => 'courses#all_index'
 
@@ -13,6 +15,6 @@ Rails.application.routes.draw do
   get '/enrollments' => 'users#enrollments'
   get '/enrollments/new' => 'users#new'
   match 'enrollments/new' => 'users#savenew', via: :post
-  
+
 
 end

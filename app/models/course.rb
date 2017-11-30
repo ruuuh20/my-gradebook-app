@@ -5,4 +5,7 @@ class Course < ApplicationRecord
   has_many :assignments
 
   validates :name, :presence => true
+  validates :code, :numericality => { only_integer: true }
+  validates :code, :length => { maximum: 3 }
+
 end

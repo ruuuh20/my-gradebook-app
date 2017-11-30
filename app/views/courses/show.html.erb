@@ -1,3 +1,5 @@
 <h2><%= @course.name %></h2>
+<h3>Assignments</h3>
+<%= link_to "New assignment", new_semester_course_assignment(@semester.id, @course.id) %>
 
 <%= link_to "Go back to courses", semester_courses_path(@semester.id, @course.id) %>

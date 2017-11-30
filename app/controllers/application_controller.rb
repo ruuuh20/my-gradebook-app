@@ -11,5 +11,11 @@ def must_be_admin
   end
 end
 
+def must_be_admin_or_teacher
+  unless current_user.admin? || current_user.teacher?
+    redirect_to root_path, :alert => "Access denied"
+  end
+end
+
 
 end
