@@ -47,6 +47,26 @@ class AssignmentsController < ApplicationController
     @course = Course.find(params[:course_id])
   end
 
+  def edit
+    @semester = Semester.find(params[:semester_id])
+    @course = Course.find(params[:course_id])
+    @assignment = Assignment.find(params[:id])
+  end
+
+  def update
+    @semester = Semester.find(params[:semester_id])
+    @course = Course.find(params[:course_id])
+    @assignment = Assignment.update(assignment_params)
+      if @assignment.save
+        flash[:notice] = "Assignment was updated."
+        redirect_to semester_course_assignments_path(@semester, @course, @assignment)
+      else
+        flash[:error] = "There was an error."
+        render 'assignments/edit'
+      end
+  end
+
+
 
 
 

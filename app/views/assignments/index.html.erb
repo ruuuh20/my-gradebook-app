@@ -1,1 +1,13 @@
-hi
+<h2> Assignment list for <%= @course.name %></h2>
+<% @assignments.each do |a| %>
+  <%= a.id %>: <%= a.name %> - <%= a.description %>
+  Date: <%= a.date %><br>
+<% end %>
+<br>
+
+<% if current_user.admin? || current_user.teacher? %>
+  <h3><%= link_to "Add new assignment", new_semester_course_assignment_path(@semester.id, @course.id) %></h3>
+<% end %>
+
+<br>
+<%= link_to "Go back to #{@course.name}", semester_course_path(@semester, @course) %>

@@ -4,3 +4,7 @@ ADMIN can:
 
 Features I want to add:
 - confirmation before deleting
+
+
+Assignments - specific categories or separate models?
+  - exam, homework, essay, etc.

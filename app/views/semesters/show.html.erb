@@ -1,4 +1,12 @@
-Current courses for <%= @semester.name %><br>
-Current enrollments: <br>
+<h2><%= @semester.name %><br></h2>
+description blah blah
+
+<% if current_user.admin? || current_user.teacher? %>
+  <h4>Current enrollments: <%= @this_semester_students.count %></h4>
+    <% @this_semester_students.each do |student| %>
+      <%= student.email %><br>
+    <% end %>
+<% end %>
 <br><br>
-<%= link_to "See list of courses", semester_courses_path(@semester) %>
+<%= link_to "See courses for #{@semester.name}  ", semester_courses_path(@semester) %>
+<%= link_to "Go back", semesters_path %>

@@ -28,6 +28,7 @@ class SemestersController < ApplicationController
 
   def show
     @semester = Semester.find(params[:id])
+    @this_semester_students = @semester.total_students
   end
 
   def edit
