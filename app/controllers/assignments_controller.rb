@@ -19,6 +19,13 @@ class AssignmentsController < ApplicationController
   def new
     @semester = Semester.find(params[:semester_id])
     @course = Course.find(params[:course_id])
+    # teacher can only upload/add for their own courses
+    if current_user.teacher?
+      if !current_user.courses.include?(@course)
+        flash[:error] = "Access denied"
+        redirect_to semester_course_path(@semester, @course)
+      end
+    end
     @assignment = Assignment.new
 
   end

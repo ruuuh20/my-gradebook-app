@@ -24,7 +24,7 @@
 <% elsif current_user.teacher? %>
   <h4>Enrolled in <%= pluralize(@courses.count, 'course') %>: </h4>
     <% @courses.each do |c| %>
-      <h4><%= c.name %></h4>
+      <h4><%= c.name %> | <%= pluralize(c.users.student.count, 'student') %> | <%= pluralize(c.assignments.count, 'assignment') %></h4>
     <% end %>
 
 
