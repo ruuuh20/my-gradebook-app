@@ -1,4 +1,8 @@
-<h2>My Dashboard</h2>
+<% if current_user.admin?  %>
+  <h2>Admin Dashboard</h2>
+<% else %>
+  <h2>My Dashboard</h2>
+<% end %>
 
 <div class="container">
 
@@ -6,21 +10,25 @@
   Student accounts: <%= User.student.count %><br>
   Teacher accounts: <%= User.teacher.count %><br>
   Guardian accounts: <%= User.guardian.count %><br>
-  <%= link_to "See all users", users_path %>
+  <%= link_to "See all users", users_path %><br>
   <%= link_to "Current Enrollments", enrollments_path(current_user) %>
-<% elsif current_user.student? || current_user.guardian? %>
 
-  <h4>Enrolled in (<%= @courses.count %>) courses:</h4>
+<% elsif current_user.student? || current_user.guardian? %>
+  <h4>Enrolled in (<%= pluralize(@courses.count, 'courses') %>):</h4>
   <ul>
     <% @courses.each do |c| %>
       <li><%= link_to "#{c.name}", semester_course_path(c.semester_id, c.id) %></li>
     <% end %>
   </ul>
 
+<% elsif current_user.teacher? %>
+  <h4>Enrolled in <%= pluralize(@courses.count, 'course') %>: </h4>
+    <% @courses.each do |c| %>
+      <h4><%= c.name %></h4>
+    <% end %>
 
 
 <% end %>
-
 
 
 

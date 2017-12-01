@@ -10,8 +10,11 @@ class User < ApplicationRecord
   #hook
   # after_initialize is used instead of overriding activerecord's initialize
   after_initialize :set_default_role
+  validates_format_of :email, :with => /@/
+  
   has_many :registrations, :dependent => :destroy
   has_many :courses, through: :registrations
+  has_many :assignments
 
   # for admin to create user
   def self.create_new_user(params)

@@ -54,7 +54,7 @@ end
 
   def dashboard
   @semesters = Semester.all
-    if current_user.student?
+    if current_user.student? || current_user.teacher?
       @courses = current_user.courses
     elsif current_user.admin?
       @users = User.all

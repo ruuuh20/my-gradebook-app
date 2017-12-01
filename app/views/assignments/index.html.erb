@@ -1,12 +1,12 @@
 <h2> Assignment list for <%= @course.name %></h2>
-<% @assignments.each do |a| %>
-  <%= a.id %>: <%= a.name %> - <%= a.description %>
-  Date: <%= a.date %><br>
+<% @assignments_in_order.each do |a| %>
+  <h4><%= a.name %></h4>
+  <%= a.description %> - Date: <%= a.date %><br>
 <% end %>
 <br>
 
 <% if current_user.admin? || current_user.teacher? %>
-  <h3><%= link_to "Add new assignment", new_semester_course_assignment_path(@semester.id, @course.id) %></h3>
+  <h3><%= link_to "Upload assignment", new_semester_course_assignment_path(@semester.id, @course.id) %></h3>
 <% end %>
 
 <br>

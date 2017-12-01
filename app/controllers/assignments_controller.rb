@@ -13,6 +13,7 @@ class AssignmentsController < ApplicationController
     @semester = Semester.find(params[:semester_id])
     @course = Course.find(params[:course_id])
     @assignments = @course.assignments
+    @assignments_in_order = @assignments.chronological
   end
 
   def new
@@ -64,6 +65,13 @@ class AssignmentsController < ApplicationController
         flash[:error] = "There was an error."
         render 'assignments/edit'
       end
+  end
+
+  def destroy
+    @assignment = Assignment.find(params[:id])
+    @assignment.destroy
+    flash[:notice] = "Deleted"
+    redirect_to semester_course_assignments_path(@semester, @course, @assignment)
   end
 
 
