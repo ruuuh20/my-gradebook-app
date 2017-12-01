@@ -14,12 +14,14 @@
   <%= link_to "Current Enrollments", enrollments_path(current_user) %>
 
 <% elsif current_user.student? || current_user.guardian? %>
-  <h4>Enrolled in (<%= pluralize(@courses.count, 'courses') %>):</h4>
-  <ul>
-    <% @courses.each do |c| %>
-      <li><%= link_to "#{c.name}", semester_course_path(c.semester_id, c.id) %></li>
-    <% end %>
-  </ul>
+  <h4><%= pluralize((@courses.count), 'courses') %> enrolled:</h4>
+    <ul>
+      <% @courses.each do |c| %>
+        <li><%= link_to "#{c.name}", semester_course_path(c.semester_id, c.id) %></li>
+      <% end %>
+    </ul>
+  <h4><%= pluralize(current_user.assignments.completed.count, 'assignment') %> completed.</h4>
+  <h4><%= pluralize(current_user.assignments.not_completed.count, 'assignment') %> not completed.</h4>
 
 <% elsif current_user.teacher? %>
   <h4>Enrolled in <%= pluralize(@courses.count, 'course') %>: </h4>
