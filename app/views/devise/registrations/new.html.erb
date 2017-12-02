@@ -22,7 +22,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :role, "Student, Instructor, Guardian or Admin?" %>
+    <%= f.label :role, "Student, Instructor, or Admin?" %>
     <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
 
   </div>

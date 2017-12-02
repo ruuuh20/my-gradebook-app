@@ -5,16 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable,
          :omniauthable, :omniauth_providers => [:facebook]
             # :validatable,
-  enum :role => [:admin, :student, :guardian, :teacher]
+  enum :role => [:admin, :student, :teacher]
 
   #hook
   # after_initialize is used instead of overriding activerecord's initialize
   after_initialize :set_default_role
   validates_format_of :email, :with => /@/
-  
+
   has_many :registrations, :dependent => :destroy
   has_many :courses, through: :registrations
   has_many :assignments
+  has_many :grades
 
   # for admin to create user
   def self.create_new_user(params)
@@ -28,6 +29,14 @@ class User < ApplicationRecord
       # self.courses.build(course_attributes)
       self.courses << course unless course.name.empty?
     end
+  end
+
+  def self.students_ids_only
+    User.student.map { |r| r.id }
+  end
+
+  def self.teachers_ids_only
+    User.teacher.map { |r| r.id }
   end
 
   def self.from_omniauth(auth)

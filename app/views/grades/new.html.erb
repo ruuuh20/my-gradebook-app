@@ -1,0 +1,23 @@
+<h2>Input Grade</h2>
+
+<%= form_for @grade do |f| %>
+<div class="field">
+  <%= f.label :score %>
+  <%= f.number_field :score %>
+</div>
+
+<div class="field">
+  <%= f.label "Select Student" %>
+  <%= f.select(:user_id, User.student.map {|u|  [u.email, u.id] }) %>
+</div>
+
+<div class="field">
+  <%= f.label "Select Assignment" %>
+  <%= f.select(:assignment_id, Assignment.all.map {|u|  u.id }) %>
+</div>
+
+
+<div class="field">
+  <%= f.submit 'Create'%>
+</div>
+<% end %>

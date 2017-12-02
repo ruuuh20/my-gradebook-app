@@ -1,6 +1,7 @@
 class Assignment < ApplicationRecord
   belongs_to :user
   belongs_to :course
+  has_many :grades
 
   def self.overdue
 
@@ -19,5 +20,5 @@ class Assignment < ApplicationRecord
     where(status: 'not completed')
   end
 
-  
+
 end

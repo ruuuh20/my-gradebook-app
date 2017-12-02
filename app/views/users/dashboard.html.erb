@@ -9,11 +9,11 @@
 <% if current_user.admin?  %>
   Student accounts: <%= User.student.count %><br>
   Teacher accounts: <%= User.teacher.count %><br>
-  Guardian accounts: <%= User.guardian.count %><br>
+
   <%= link_to "See all users", users_path %><br>
   <%= link_to "Current Enrollments", enrollments_path(current_user) %>
 
-<% elsif current_user.student? || current_user.guardian? %>
+<% elsif current_user.student? %>
   <h4><%= pluralize((@courses.count), 'courses') %> enrolled:</h4>
     <ul>
       <% @courses.each do |c| %>
@@ -28,6 +28,16 @@
     <% @courses.each do |c| %>
       <h4><%= c.name %> | <%= pluralize(c.users.student.count, 'student') %> | <%= pluralize(c.assignments.count, 'assignment') %></h4>
     <% end %>
+  <h4>Students in my class:</h4>
+    <ul>
+    <% @courses.each do |c| %>
+      <% c.users.student.each do |stu| %>
+        <li><%= stu.email %></li>
+      <% end %>
+    </ul>
+    <% end %>
+
+    <%= link_to 'Input New Grade', new_grade_path %>
 
 
 <% end %>

@@ -16,24 +16,37 @@ course1 = Course.create(:name => "English A", :code => 123, :semester_id => 1)
 course2 = Course.create(:name => "Math A", :code => 456, :semester_id => 1)
 course3 = Course.create(:name => "Writing A", :code => 202, :semester_id => 2)
 course4 = Course.create(:name => "Math B", :code => 111, :semester_id => 2)
-# course5 = Course.create(:name => "blah", :code => 001, :semester_id => 3)
+course5 = Course.create(:name => "Testing3", :code => 800, :semester_id => 3)
+course5 = Course.create(:name => "Testing4", :code => 934, :semester_id => 4)
 
-# admin1 = User.create(:email => "iamadmin@example.com",
-#             :password => "password",
-#             :role => :admin)
+admin1 = User.create(:email => "iamadmin@example.com",
+            :password => "password",
+            :role => :admin)
 student1 = User.create(:email => "iamstudent@example.com",
             :password => "password",
             :role => :student,
-            :course_ids => [3, 4])
+            :course_ids => [1, 2, 3, 4])
 teacher1 = User.create(:email => "iamteacher@example.com",
             :password => "password",
-            :role => :teacher)
-guardian1 = User.create(:email => "iamguardian@example.com",
+            :role => :teacher,
+            :course_ids => [1])
+student2 = User.create(:email => "student2@example.com",
             :password => "password",
-            :role => :guardian)
+            :role => :student,
+            :course_ids => [2, 4])
+student3 = User.create(:email => "student3@example.com",
+            :password => "password",
+            :role => :student,
+            :course_ids => [1])
+student4 = User.create(:email => "student4@example.com",
+            :password => "password",
+            :role => :student,
+            :course_ids => [1, 4])
 
+enrollment1 = Registration.create(:user_id => 6, :course_id => 1)
+enrollment2 = Registration.create(:user_id => 6, :course_id => 2)
+enrollment3 = Registration.create(:user_id => 7, :course_id => 3)
+enrollment4 = Registration.create(:user_id => 7, :course_id => 1)
 
-# enrollment1 = Registration.create(:user_id => 6, :course_id => 1)
-# enrollment2 = Registration.create(:user_id => 6, :course_id => 2)
-# enrollment3 = Registration.create(:user_id => 7, :course_id => 3)
-# enrollment4 = Registration.create(:user_id => 7, :course_id => 1)
+assignment1 = Assignment.create(:name => "essay 1", :description => "this is an essay testing", :date => "2017-12-30", :status => "Completed", :user_id => 3, :course_id => 1)
+assignment2 = Assignment.create(:name => "quiz 1", :description => "this is a quiz hihihi", :date => "2017-12-10", :status => "Completed", :user_id => 6, :course_id => 1)

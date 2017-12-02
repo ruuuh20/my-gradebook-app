@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/enrollments' => 'users#enrollments'
   get '/enrollments/new' => 'users#new'
   match 'enrollments/new' => 'users#savenew', via: :post
+  resources :grades
 
 
 end

@@ -21,13 +21,6 @@
           <li><%= link_to "Enrollments", enrollments_path(current_user) %></li>
 
 
-
-        <% elsif current_user.student? %>
-
-
-
-        <% elsif current_user.guardian? %>
-          <li>GUARDIAN</li>
         <% end %>
         <li><%= link_to "Dashboard", dashboard_path(current_user) %></li>
         <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
