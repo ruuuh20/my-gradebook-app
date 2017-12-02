@@ -9,3 +9,6 @@
     <h3><%= link_to "#{c.name}", semester_course_path(@semester.id, c.id) %></h3>
   <% end %>
 <% end %>
+
+<br>
+<%= link_to "Go back to #{@semester.name}", semester_path(@semester) %>

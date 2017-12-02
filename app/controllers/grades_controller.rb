@@ -12,7 +12,7 @@ class GradesController < ApplicationController
   end
 
 
-  end
+
 
   def new
     @grade = Grade.new
@@ -20,33 +20,47 @@ class GradesController < ApplicationController
 
 
   def create
-    # if User.students_ids_only.include?(params["grade"][:user_id]) == false
-    #     flash[:error] = "That is not a valid student id"
-    #     render 'grades/new'
+    @user = User.find(params["grade"][:user_id])
+    @assignment = Assignment.find(params["grade"]["assignment_id"])
+
+      if !@user.assignments.include?(@assignment)
+        flash[:error] = "Student and Assignment do not match"
+        redirect_to new_grade_path
+      else
     # else
-      @grade = Grade.create
-      @student = User.find(params["grade"][:user_id])
-      @grade = @student.grades.build
-      @assignment = Assignment.find(params["grade"]["assignment_id"])
+        @grade = Grade.create(grade_params)
+
+      # @student = User.find(params["grade"][:user_id])
+      # @grade = @student.grades.build
+      # @assignment = Assignment.find(params["grade"]["assignment_id"])
     # @user = User.find
     # if the inputted user_id is not a student
     # binding.pry
-
-
           if @grade.save!
+            @grade.assignment_id = params["grade"]["assignment_id"]
+            @grade.user_id = params["grade"][:user_id]
             flash[:notice] = "Grade was added succesfully."
-            redirect_to root_path
+            redirect_to grades_path
           else
             # binding.pry
             flash[:error] = "There was an error"
             render 'grades/new'
           end
         end
-      # end
+    end
+
+
+
+  def destroy
+    @grade = Grade.find(params[:id])
+    @grade.destroy
+    flash[:alert] = "Grade was deleted"
+    redirect_to grades_path
+  end
 
 
   private
-    # def grade_params
-    #   params.require(:grade).permit(:score, :assignment_id, :user_id)
-    # end
+    def grade_params
+      params.require(:grade).permit(:score, :assignment_id, :user_id)
+    end
 end

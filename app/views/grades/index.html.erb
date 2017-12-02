@@ -1,1 +1,10 @@
-hi
+<% if current_user.admin? %>
+<h4><%= link_to "Input a new grade", new_grade_path %></h4>
+
+  <% @grades.each do |grade| %>
+    <h3>Assignment ID: <%= grade[:assignment_id] %></h3>
+    <h4>User: <%= grade[:user_id] %></h4>
+    <h4>Score: <%= grade[:score] %></h4>
+    <%= link_to "Delete", grade_path(grade), :method => 'delete' %>
+  <% end %>
+<% end %>

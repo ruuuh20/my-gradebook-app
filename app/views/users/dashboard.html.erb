@@ -1,7 +1,7 @@
 <% if current_user.admin?  %>
   <h2>Admin Dashboard</h2>
 <% else %>
-  <h2>My Dashboard</h2>
+  <h2>My Dashboard (<%= current_user.email %>)</h2>
 <% end %>
 
 <div class="container">
@@ -11,6 +11,7 @@
   Teacher accounts: <%= User.teacher.count %><br>
 
   <%= link_to "See all users", users_path %><br>
+  <%= link_to "See all grades", grades_path %><br>
   <%= link_to "Current Enrollments", enrollments_path(current_user) %>
 
 <% elsif current_user.student? %>
@@ -18,12 +19,21 @@
     <ul>
       <% @courses.each do |c| %>
         <li><%= link_to "#{c.name}", semester_course_path(c.semester_id, c.id) %></li>
+          <% c.assignments.each do |a| %>
+            <li><%= a.name %> (<%= a.status %>)</li>
+          <% end %>
       <% end %>
     </ul>
-  <h4><%= pluralize(current_user.assignments.completed.count, 'assignment') %> completed.</h4>
-  <h4><%= pluralize(current_user.assignments.not_completed.count, 'assignment') %> not completed.</h4>
+  <!--<h4><%= pluralize(current_user.assignments.completed.count, 'assignment') %> completed.</h4>
+  <h4><%= pluralize(current_user.assignments.not_completed.count, 'assignment') %> not completed.</h4>-->
+  
+  <h4><%= pluralize(current_user.grades.count, 'grade') %>:</h4>
+    <% current_user.grades.each do |grade| %>
+    <li><%= grade.score %>%, for <%= grade.assignment_id %></li>
+    <% end %>
 
-<% elsif current_user.teacher? %>
+<!--current_user.teacher?-->
+<% else  %>
   <h4>Enrolled in <%= pluralize(@courses.count, 'course') %>: </h4>
     <% @courses.each do |c| %>
       <h4><%= c.name %> | <%= pluralize(c.users.student.count, 'student') %> | <%= pluralize(c.assignments.count, 'assignment') %></h4>
