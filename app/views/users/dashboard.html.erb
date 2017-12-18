@@ -13,7 +13,7 @@
   <%= link_to "See all users", users_path %><br>
   <%= link_to "See all courses", courses_path %><br>
   <%= link_to "See all grades", grades_path %><br>
-  <%= link_to "Current Enrollments", enrollments_path(current_user) %>
+  <%= link_to "See Most Students Page", courses_most_students_path %><br>
 
 <% elsif current_user.student? %>
   <h4><%= pluralize((@courses.count), 'courses') %> enrolled:</h4>

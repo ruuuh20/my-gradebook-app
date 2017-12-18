@@ -66,6 +66,10 @@ class CoursesController < ApplicationController
     redirect_to semester_courses_path(@semester)
   end
 
+  def most_students
+    @courses = Course.most_students
+  end
+
   private
     def course_params
       params.require(:course).permit(:name, :code, :semester_id)

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
   get '/courses' => 'courses#all_index'
 
+  get '/courses/most_students' => 'courses#most_students'
+
   get '/dashboard' => 'users#dashboard'
   get '/enrollments' => 'users#enrollments'
   get '/enrollments/new' => 'users#new'

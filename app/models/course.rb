@@ -8,4 +8,11 @@ class Course < ApplicationRecord
   validates :code, :numericality => { only_integer: true }
   validates :code, :length => { maximum: 3 }
 
+
+  def self.most_students
+    joins(:registrations).group(:course_id).order("count(*) DESC")
+  end
+
+
+
 end

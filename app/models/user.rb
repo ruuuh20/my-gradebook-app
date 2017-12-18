@@ -23,6 +23,10 @@ class User < ApplicationRecord
 
   end
 
+  def self.most_courses
+    joins(:registrations).group(:user_id).order("count(*) DESC")
+  end
+
   def courses_attributes=(course_attributes)
     course_attributes.values.each do |course_attribute|
       course = Course.find_or_create_by(course_attribute)

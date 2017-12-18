@@ -1,0 +1,4 @@
+<h3>Courses ranking according to number of enrollments</h3>
+<% @courses.each do |c| %>
+  <h4>  <%= c.name %> has <%= c.users.student.count %> students</h4>
+<% end %>

@@ -8,8 +8,11 @@ class Grade < ApplicationRecord
   # def self.highest_score
   #   Grade.all.each do |grade|
   #     if
-  
+
   def student_grades
     current_user.grades.all.map { |m| m.score }
+  end
+
+  def average
   end
 end
