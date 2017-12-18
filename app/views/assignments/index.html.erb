@@ -1,6 +1,6 @@
 <h2> Assignment list for <%= @course.name %></h2>
 <% @assignments_in_order.each do |a| %>
-  <h4><%= a.name %></h4>
+  <h4><%= a.name %> (id: <%= a.id %>)</h4>
   <%= a.description %> - Date: <%= a.date %><br>
 <% end %>
 <br>

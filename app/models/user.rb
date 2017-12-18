@@ -51,5 +51,15 @@ class User < ApplicationRecord
     # self.role = :student unless self.role
   end
 
+  def user_assignments_total
+    self.courses.each do |course|
+      course.assignments.each do |assignment|
+        self.assignments << assignment
+      end
+
+    end
+    self.assignments.map{|n| n}
+  end
+
 
 end

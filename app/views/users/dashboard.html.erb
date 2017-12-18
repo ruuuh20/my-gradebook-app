@@ -11,6 +11,7 @@
   Teacher accounts: <%= User.teacher.count %><br>
 
   <%= link_to "See all users", users_path %><br>
+  <%= link_to "See all courses", courses_path %><br>
   <%= link_to "See all grades", grades_path %><br>
   <%= link_to "Current Enrollments", enrollments_path(current_user) %>
 
@@ -26,7 +27,7 @@
     </ul>
   <!--<h4><%= pluralize(current_user.assignments.completed.count, 'assignment') %> completed.</h4>
   <h4><%= pluralize(current_user.assignments.not_completed.count, 'assignment') %> not completed.</h4>-->
-  
+
   <h4><%= pluralize(current_user.grades.count, 'grade') %>:</h4>
     <% current_user.grades.each do |grade| %>
     <li><%= grade.score %>%, for <%= grade.assignment_id %></li>

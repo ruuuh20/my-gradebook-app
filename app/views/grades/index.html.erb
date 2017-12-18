@@ -8,3 +8,17 @@
     <%= link_to "Delete", grade_path(grade), :method => 'delete' %>
   <% end %>
 <% end %>
+
+
+<% if current_user.teacher? %>
+<h3>Grades for <%= current_user.courses.first.name %></h3>
+  <% current_user.courses.first.users.student.each do |student| %>
+    <h4><%= student.email %> (id: <%= student.id %>)</h4>
+      <% student.grades.each do |grade| %>
+      Assignment id: <%= grade.assignment_id %><br>
+      Score: <%= grade.score %><br>
+      <% end %>
+    <% end %>
+
+
+<% end %>

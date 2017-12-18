@@ -6,7 +6,7 @@ class GradesController < ApplicationController
   def index
     if current_user.admin?
       @grades = Grade.all
-    elsif current_user.student?
+    else
       @grades = current_user.grades.all
     end
   end
@@ -23,7 +23,7 @@ class GradesController < ApplicationController
     @user = User.find(params["grade"][:user_id])
     @assignment = Assignment.find(params["grade"]["assignment_id"])
 
-      if !@user.assignments.include?(@assignment)
+      if !@user.user_assignments_total.include?(@assignment)
         flash[:error] = "Student and Assignment do not match"
         redirect_to new_grade_path
       else
