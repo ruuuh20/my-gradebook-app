@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
       flash[:notice] = "Course created"
       redirect_to semester_course_path(@semester.id, @course.id)
     else
-      flash[:error] = "error"
+      flash[:error] = "There was an error"
       redirect_to root_path
     end
   end
