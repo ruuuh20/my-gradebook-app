@@ -3,6 +3,7 @@ class Course < ApplicationRecord
   has_many :registrations
   has_many :users, through: :registrations
   has_many :assignments
+  has_many :grades
 
   validates :name, :presence => true
   validates :code, :numericality => { only_integer: true }

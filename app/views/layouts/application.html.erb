@@ -12,6 +12,7 @@
     <header>
       <%= render 'layouts/header' %>
     </header>
+  
     <% if flash[:notice] || flash[:error] || flash[:alert] %>
       <div class="container alert">
         <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>

@@ -1,5 +1,17 @@
 <h2>Input Grade</h2>
 
+<% if @grade.errors.any? %>
+  <div class="error_explanation"
+    <h2><%= pluralize(@grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
+      <ul>
+       <% @grade.errors.full_messages.each do |msg| %>
+         <li><%= msg %></li>
+       <% end %>
+      </ul>
+  </div>
+<% end %>
+
+</div>
 <%= form_for @grade do |f| %>
 <div class="field">
   <%= f.label :score %>

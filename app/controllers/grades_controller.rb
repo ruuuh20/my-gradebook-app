@@ -1,3 +1,4 @@
+require 'pry'
 class GradesController < ApplicationController
 
   before_action :authenticate_user!
@@ -36,7 +37,7 @@ class GradesController < ApplicationController
     # @user = User.find
     # if the inputted user_id is not a student
     # binding.pry
-          if @grade.save!
+          if @grade.save
             @grade.assignment_id = params["grade"]["assignment_id"]
             @grade.user_id = params["grade"][:user_id]
             flash[:notice] = "Grade was added succesfully."
