@@ -7,6 +7,12 @@ class GradesController < ApplicationController
   def index
     if current_user.admin?
       @grades = Grade.all
+      @grades_hash = Grade.blah
+      @assignments = []
+      @grades_hash.each do |key, value|
+        @assignments << Assignment.find_by_id(key)
+
+      end
     else
       @grades = current_user.grades.all
     end

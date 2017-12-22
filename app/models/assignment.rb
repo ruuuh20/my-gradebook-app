@@ -3,10 +3,15 @@ class Assignment < ApplicationRecord
   belongs_to :course
   has_many :grades
 
-  def self.overdue
+  total = 0
 
+  def total_scores
+
+    self.grades.each do |g|
+      total += g.score
+    end
+    total
   end
-
 
   def self.chronological
     Assignment.order(:date)

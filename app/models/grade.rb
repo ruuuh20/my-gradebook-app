@@ -16,6 +16,51 @@ class Grade < ApplicationRecord
     current_user.grades.all.map { |m| m.score }
   end
 
+  def self.average_1
+      Grade.where(:assignment_id => 1).average(:score).to_i
+  end
+
+  def self.average_2
+      Grade.where(:assignment_id => 2).average(:score).to_i
+  end
+
+  def self.average_3
+      Grade.where(:assignment_id => 3).average(:score).to_i
+  end
+
+  def self.average_4
+      Grade.where(:assignment_id => 4).average(:score).to_i
+  end
+
+  def self.average_5
+      Grade.where(:assignment_id => 5).average(:score).to_i
+  end
+
+  def self.average_6
+      Grade.where(:assignment_id => 6).average(:score).to_i
+  end
+
+
+
+  def self.average_by_class
+    # add association?
+    # joins(:course).group(:course_id).order("count(*) DESC")
+    grades_total = []
+    @courses = Course.all
+    @courses.each do |course|
+      course.assignments.each do |assignment|
+         grades_total << assignment.grades.all.map { |m| m.score }
+      end
+    end
+    return grades_total
+  end
+
+  def self.blah
+    Grade.all.group_by(&:assignment_id)
+  end
+
+
+
   def to_letter_grade
     if (self.score >= 90 && self.score <= 200)
       "A"

@@ -9,6 +9,15 @@
   <% end %>
 <% end %>
 
+<h1>Average Grades</h1>
+Assignment 1: <%= Grade.average_1 %><br>
+Assignment 2: <%= Grade.average_2 %><br>
+Assignment 3: <%= Grade.average_3 %><br>
+Assignment 4: <%= Grade.average_4 %><br>
+Assignment 5: <%= Grade.average_5 %><br>
+Assignment 6: <%= Grade.average_6 %><br>
+
+
 
 <% if current_user.teacher? %>
 <h3>Grades for <%= current_user.courses.first.name %></h3>
