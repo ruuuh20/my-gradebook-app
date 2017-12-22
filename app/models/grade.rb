@@ -1,7 +1,6 @@
 class Grade < ApplicationRecord
   belongs_to :user
   belongs_to :assignment, optional: true
-
   # validates :score, numericality: true, inclusion: { :in => 1..200}, :message => "can only be between 1 and 200."
   validates_numericality_of :score, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 200, :message => "must be between 0 and 200"
 
@@ -17,8 +16,7 @@ class Grade < ApplicationRecord
     current_user.grades.all.map { |m| m.score }
   end
 
-
-  def letter_grade
+  def to_letter_grade
     if (self.score >= 90 && self.score <= 200)
       "A"
     elsif (self.score >= 80 && self.score <= 89)
@@ -30,8 +28,7 @@ class Grade < ApplicationRecord
     elsif (self.score >= 0 && self.score <= 59)
       "F"
     else
-      "Error?"
-
+      "No letter grade found"
     end
   end
 

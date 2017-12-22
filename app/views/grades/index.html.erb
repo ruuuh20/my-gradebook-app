@@ -4,7 +4,7 @@
   <% @grades.each do |grade| %>
     <h3>Assignment ID: <%= grade[:assignment_id] %></h3>
     <h4>User: <%= grade[:user_id] %></h4>
-    <h4>Score: <%= grade[:score] %> ( <%= grade.letter_grade %> ) </h4>
+    <h4>Score: <%= grade[:score] %> ( <%= grade.to_letter_grade %> ) </h4>
     <%= link_to "Delete", grade_path(grade), :method => 'delete' %>
   <% end %>
 <% end %>
