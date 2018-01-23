@@ -3,7 +3,7 @@
 <% if current_user.admin? %>
   <% @semesters.each do |sem| %>
     <h3> <%= sem.name %> </h3>
-    <%= link_to "Show", semester_path(sem) %> | <%= link_to "Edit", edit_semester_path(sem) %> | <%= link_to "Delete", semester_path(sem), :method => 'delete' %>
+    <%= link_to "Show Courses", semester_path(sem), :class => "show_courses" %> | <%= link_to "Edit", edit_semester_path(sem) %> | <%= link_to "Delete", semester_path(sem), :method => 'delete' %>
   <% end %>
   <h3><%= link_to "Create New", new_semester_path %></h3>
 <% else %>
