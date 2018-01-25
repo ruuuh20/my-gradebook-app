@@ -12,7 +12,7 @@
   <nav>
     <ul class="nav navbar-nav navbar-right">
       <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Go To Course Catalog", semesters_path %></li>
+      <li><%= link_to "Go To Course Catalog", semesters_path, :class => "all_semesters" %></li>
 
       <% if user_signed_in? %>
 

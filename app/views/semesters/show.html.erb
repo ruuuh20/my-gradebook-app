@@ -7,6 +7,10 @@ description blah blah
       <%= student.email %><br>
     <% end %>
 <% end %>
+
+<div class="courses">
+  <ol></ol>
+</div>
 <br><br>
-<%= link_to "See courses for #{@semester.name}  ", semester_courses_path(@semester) %><br>
+<%= link_to "See courses for #{@semester.name}  ", semester_courses_path(@semester), :class => "show_courses" %><br>
 <%= link_to "Go back", semesters_path %>

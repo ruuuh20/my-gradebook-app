@@ -7,7 +7,11 @@ class SemestersController < ApplicationController
 
   def index
     @semesters = Semester.all
-
+    respond_to do |format|
+      format.html
+      format.json {render json: @semesters}
+    end
+    # render json: @semesters
 
   end
 
