@@ -19,30 +19,35 @@ $(() => {
   bindClickHandlers()
 })
 
+const bindClickHandlers = () => {
+  $("a.show_courses").on("click", function(e) {
+    e.preventDefault();
+
+    $.get(this.href).success(function(json) {
+      // debugger
+    $(".courses").html("")
+
+    json.forEach(function(course) {
+      // debugger
+      $(".courses").append("<h2>" + course.name + "</h2>")
+    })
+    })
+
+  })
+}
+
+// //ajax
 // const bindClickHandlers = () => {
 //   $("a.show_courses").on("click", function(e) {
-//     $.get(this.href).success(function(json) {
-//       var $ol = $("div.courses ol")
-//       $ol.html("")
-//       json.forEach(function(course) {
-//         $ol.append("<li>" + course.name + "</li>");
-//       })
+//     $.ajax({
+//       method: "GET",
+//       url: this.href
+//     }).success(function(response){
+//       $("div.courses").html(response)
 //     })
 //     e.preventDefault()
 //   })
 // }
-
-const bindClickHandlers = () => {
-  $("a.show_courses").on("click", function(e) {
-    $.ajax({
-      method: "GET",
-      url: this.href
-    }).done(function(data){
-      console.log(data)
-    })
-    e.preventDefault()
-  })
-}
 // $(document).ready(function() {
 //   $(".all_semesters").on("click", function(e) {
 //

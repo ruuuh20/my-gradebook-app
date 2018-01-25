@@ -7,6 +7,9 @@ class CoursesController < ApplicationController
     @semester = Semester.find(params[:semester_id])
     @courses = @semester.courses.all
     @all_courses = Course.all
+
+    # render :layout => false
+    render :json => @courses
   end
 
   #for admin to see all courses ?????

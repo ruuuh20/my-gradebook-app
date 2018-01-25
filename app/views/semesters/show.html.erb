@@ -8,9 +8,12 @@ description blah blah
     <% end %>
 <% end %>
 
-<div class="courses">
-  <ol></ol>
-</div>
+
 <br><br>
 <%= link_to "See courses for #{@semester.name}  ", semester_courses_path(@semester), :class => "show_courses" %><br>
+
+<div class="courses">
+
+</div>
+
 <%= link_to "Go back", semesters_path %>
