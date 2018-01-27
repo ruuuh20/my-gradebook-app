@@ -2,5 +2,10 @@
 <h3>a description ~ ~ ~</h3>
 <h4><%= link_to "See Assignments", semester_course_assignments_path(@semester, @course) %></h4>
 
+<%= link_to "Next", semester_course_path(@semester, @course), :class => "js-next", :data => {:id => @course.id } %>
+
+<div class="next">
+</div>
+
 <br>
 <%= link_to "Go back to Courses", semester_courses_path(@semester.id, @course.id) %>

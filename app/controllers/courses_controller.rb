@@ -9,7 +9,11 @@ class CoursesController < ApplicationController
     @all_courses = Course.all
 
     # render :layout => false
-    render :json => @courses
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @courses}
+    end
+
   end
 
   #for admin to see all courses ?????
@@ -39,6 +43,11 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @semester =  Semester.find(params[:semester_id])
+
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @course}
+    end
   end
 
   def edit

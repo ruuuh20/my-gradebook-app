@@ -8,7 +8,7 @@ class SemestersController < ApplicationController
   def index
     @semesters = Semester.all
     respond_to do |format|
-      format.html
+      format.html {render :index}
       format.json {render json: @semesters}
     end
     # render json: @semesters
@@ -32,7 +32,12 @@ class SemestersController < ApplicationController
 
   def show
     @semester = Semester.find(params[:id])
+    @semesters = Semester.all
     @this_semester_students = @semester.total_students
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @semester}
+    end
   end
 
   def edit

@@ -22,8 +22,9 @@ $(() => {
 const bindClickHandlers = () => {
   $("a.show_courses").on("click", function(e) {
     e.preventDefault();
+    let id = $(this).attr("data-id")
 
-    $.get(this.href).success(function(json) {
+    $.get("/semesters/" + id + "/courses.json").success(function(json) {
       // debugger
     $(".courses").html("")
 
@@ -31,6 +32,19 @@ const bindClickHandlers = () => {
       // debugger
       $(".courses").append("<h2>" + course.name + "</h2>")
     })
+    })
+
+  })
+
+  //clicking on Next button
+  $(".js-next").on("click", function(e) {
+    e.preventDefault();
+    let id = $(this).attr("data-id")
+    // debugger
+    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/semesters/" + id + "/courses/" + nextId + ".json").success(function(course) {
+      // debugger
+      $("div.next").html(course.name)
     })
 
   })
