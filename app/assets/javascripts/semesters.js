@@ -1,20 +1,3 @@
-// $(document).ready(function() {
-//   $(".all_semesters").on("click", function(e) {
-//     $.get(this.href).success(function(json) {
-//       var $ol = $("div.semesters ol")
-//       $ol.html("") // empty the ol
-//       // debugger
-//       // var jsonKeys = Object.keys(json);
-//       json.forEach(function(semester) {
-//         // debugger
-//         $ol.append("<li>" + semester.name + "</li>");
-//       })
-//     })
-//     e.preventDefault();
-//     // console.log("hi")
-//   })
-// })
-
 $(() => {
   bindClickHandlers()
 })
@@ -48,7 +31,33 @@ const bindClickHandlers = () => {
     })
 
   })
+
+  // show all semesters in course catalog
+    $(".all_semesters").on("click", function(e) {
+      e.preventDefault();
+      $.get("/semesters.json").success(function(json) {
+        var $ol = $("div.semesters ol")
+        $ol.html("") // empty the ol
+        $("div.welcome").html("") //empty the welcome main page
+        // debugger
+        // var jsonKeys = Object.keys(json);
+        json.forEach(function(semester) {
+          // debugger
+          $ol.append("<li>" + semester.name + "</li>");
+        })
+      })
+
+
+    })
 }
+// 
+// function Grade(id, ) {
+//
+// }
+
+
+// create Grade
+// function grade(g)
 
 // //ajax
 // const bindClickHandlers = () => {
