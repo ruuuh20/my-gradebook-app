@@ -50,10 +50,35 @@ const bindClickHandlers = () => {
 
     })
 }
-// 
-// function Grade(id, ) {
-//
-// }
+
+function Assignment(assignment) {
+  this.id = assignment.id;
+  this.score = assignment.name
+  this.date = assignment.date
+  this.status = assignment.status
+}
+
+// Grade.prototype.
+
+
+//Submit assignments via ajax
+$(function() {
+  $("#new_assignment").on("submit", function(e) {
+    e.preventDefault();
+    url = this.action
+    let values = $(this).serialize();
+    let posting = $.post(url, values);
+
+    posting.done(function(data) {
+
+      // debugger
+      const newAssignment = new Assignment(data)
+      $("#assignmentName").text(data["name"])
+    })
+
+
+  })
+})
 
 
 // create Grade

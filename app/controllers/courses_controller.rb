@@ -44,6 +44,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @semester =  Semester.find(params[:semester_id])
 
+    @assignments = @course.assignments
+    @assignment = @course.assignments.build
+
     respond_to do |format|
       format.html {render :show}
       format.json {render json: @course}

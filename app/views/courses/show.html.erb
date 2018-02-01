@@ -7,5 +7,47 @@
 <div class="next">
 </div>
 
+<h2>Assignments</h2>
+
+<%= form_for [@semester, @course, @assignment] do |f|  %>
+<div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+
+<div class="field">
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+</div>
+
+<div class="field">
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+</div>
+<div class="field">
+  <%= f.label :status %>
+  <%= f.text_field :status %>
+</div>
+
+<div class="field">
+  <%= f.label "Select Teacher" %>
+  <%= f.select(:user_id, User.teacher.map {|u|  [u.email, u.id] }) %>
+</div>
+
+
+<div class="field">
+  <%= f.submit 'Create Assignment'%>
+</div>
+
+<% end %>
+
+<div id="newAssignment">
+  <h2 id="assignmentName"></h2>
+
+  <p id="assignmentDescription"></p>
+  <p id="assignmentDate"></p>
+
+</div>
+
 <br>
 <%= link_to "Go back to Courses", semester_courses_path(@semester.id, @course.id) %>

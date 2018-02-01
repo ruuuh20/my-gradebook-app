@@ -38,6 +38,7 @@ class SemestersController < ApplicationController
       format.html {render :show}
       format.json {render json: @semester}
     end
+
   end
 
   def edit
