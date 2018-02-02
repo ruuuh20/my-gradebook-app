@@ -9,7 +9,7 @@
 
 <h2>Assignments</h2>
 
-<%= form_for [@semester, @course, @assignment] do |f|  %>
+<%= form_for [@semester, @course, @assignment], :data => {:id => @assignment.id } do |f|  %>
 <div class="field">
   <%= f.label :name %>
   <%= f.text_field :name %>

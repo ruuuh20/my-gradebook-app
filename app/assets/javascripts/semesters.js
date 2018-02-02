@@ -51,34 +51,47 @@ const bindClickHandlers = () => {
     })
 }
 
-function Assignment(assignment) {
-  this.id = assignment.id;
-  this.score = assignment.name
-  this.date = assignment.date
-  this.status = assignment.status
-}
-
-// Grade.prototype.
-
 
 //Submit assignments via ajax
 $(function() {
   $("#new_assignment").on("submit", function(e) {
     e.preventDefault();
-    url = this.action
+    // url = $(this).url
+    var action = $(this).attr('action')
+    let id = $(this).attr("data-id")
     let values = $(this).serialize();
-    let posting = $.post(url, values);
+    // debugger
+    let posting = $.post("/assignments", values);
 
     posting.done(function(data) {
 
       // debugger
       const newAssignment = new Assignment(data)
-      $("#assignmentName").text(data["name"])
+      let assignmentHtml = newAssignment.formatIndex()
+      debugger
+      // $("#assignmentName").append(newAssignment["name"])
+
+      $("#assignmentName").append(assignmentHtml)
     })
 
 
   })
 })
+
+function Assignment(assignment) {
+  this.id = assignment.id;
+  this.name = assignment.name
+  this.description = assignment.description
+  this.date = assignment.date
+  this.status = assignment.status
+}
+
+Assignment.prototype.formatIndex = function() {
+  let assignmentHTML = `<h1>${this.name}</h1>`
+  return assignmentHTML
+}
+
+
 
 
 // create Grade
