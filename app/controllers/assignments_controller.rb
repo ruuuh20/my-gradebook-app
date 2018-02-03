@@ -34,21 +34,21 @@ class AssignmentsController < ApplicationController
     @semester = Semester.find(params[:semester_id])
     @course = Course.find(params[:course_id])
     # @course = Course.find(params[:id])
-    @assignment = Assignment.create(assignment_params)
-    # @assignment = @course.assignments.build(assignment_params)
+    # @assignment = Assignment.create(assignment_params)
+    @assignment = @course.assignments.build(assignment_params)
     @assignment.course_id = @course.id
     if current_user.teacher?
       @assignment.user_id = current_user.id
     end
     # binding.pry
     if @assignment.save
-      # flash[:notice] = "Assignment was created."
-      # respond_to do |format|
-      #   format.html {redirect_to @semester}
-      #   format.json {render json: @assignment}
-      # # redirect_to  semester_course_assignments_path(@semester, @course, @assignment)
-      # end
-    render json: @assignment, :status => 201
+      flash[:notice] = "Assignment was created."
+      respond_to do |format|
+        format.html {redirect_to semester_course_path(@semester, @course)}
+        format.json {render :json =>  @assignment}
+      # redirect_to  semester_course_assignments_path(@semester, @course, @assignment)
+      end
+    # render json: @assignment, :status => 201
     else
       flash[:error] = "There was an error"
       render 'assignments/new'

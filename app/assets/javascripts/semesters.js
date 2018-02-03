@@ -57,24 +57,46 @@ $(function() {
   $("#new_assignment").on("submit", function(e) {
     e.preventDefault();
     // url = $(this).url
-    var action = $(this).attr('action')
+    var action = $(this).attr('action') + ".json"
     let id = $(this).attr("data-id")
     let values = $(this).serialize();
     // debugger
-    let posting = $.post("/assignments", values);
 
-    posting.done(function(data) {
-
-      // debugger
-      const newAssignment = new Assignment(data)
-      let assignmentHtml = newAssignment.formatIndex()
-      debugger
-      // $("#assignmentName").append(newAssignment["name"])
-
-      $("#assignmentName").append(assignmentHtml)
+    //using low-level ajax instead of $.post
+    $.ajax({
+      url: action,
+      data: values,
+      dataType: "json",
+      method: "POST"
     })
-
-
+    .success(function(json) {
+      // console.log(json)
+      html = ""
+      html += "<li>" + json.name + "</li>"
+      // const newAssignment = new Assignment(data)
+      // console.log(newAssignment)
+      // let assignmentHtml = newAssignment.formatIndex()
+      // debugger
+      // $("#assignmentName").append(newAssignment["name"])
+      $("#assignmentName").append(html)
+    })
+    .error(function() {
+      console.log("error")
+    })
+    // debugger
+    // let posting = $.post("/assignments", values);
+    //
+    // posting.done(function(data) {
+    //
+    //   // debugger
+    //   const newAssignment = new Assignment(data)
+    //   console.log(newAssignment)
+    //   let assignmentHtml = newAssignment.formatIndex()
+    //   // debugger
+    //   // $("#assignmentName").append(newAssignment["name"])
+    //
+    //   $("#assignmentName").append(assignmentHtml)
+    // })
   })
 })
 
@@ -84,10 +106,13 @@ function Assignment(assignment) {
   this.description = assignment.description
   this.date = assignment.date
   this.status = assignment.status
+  this.user_id = assignment.user_id
 }
 
 Assignment.prototype.formatIndex = function() {
+  console.log(this)
   let assignmentHTML = `<h1>${this.name}</h1>`
+
   return assignmentHTML
 }
 
