@@ -110,7 +110,7 @@ function Assignment(assignment) {
 }
 
 Assignment.prototype.formatIndex = function() {
-  console.log(this)
+  // console.log(this)
   let assignmentHTML = `<h1>${this.name}</h1>`
 
   return assignmentHTML
