@@ -51,6 +51,27 @@ const bindClickHandlers = () => {
     })
 }
 
+function Assignment(assignment) {
+  this.id = assignment.id;
+  this.name = assignment.name
+  this.description = assignment.description
+  this.date = assignment.date
+  this.status = assignment.status
+  this.user_id = assignment.user_id
+}
+
+Assignment.prototype.formatIndex = function() {
+  // console.log(this)
+  let html = ""
+  html = `<h1>${this.name}</h1>` +
+          `<h3>${this.description}</h3>` +
+          `<h3>Course id: ${this.course_id}</h3>` +
+          `<h3>Due date: ${this.date}</h3>`
+
+
+  $("#assignmentName").append(html)
+}
+
 
 //Submit assignments via ajax
 $(function() {
@@ -71,14 +92,15 @@ $(function() {
     })
     .success(function(json) {
       // console.log(json)
-      html = ""
-      html += "<li>" + json.name + "</li>"
-      // const newAssignment = new Assignment(data)
+      // html = ""
+      // html += "<li>" + json.name + "</li>"
+
+      const newAssignment = new Assignment(json)
       // console.log(newAssignment)
-      // let assignmentHtml = newAssignment.formatIndex()
+      newAssignment.formatIndex();
       // debugger
       // $("#assignmentName").append(newAssignment["name"])
-      $("#assignmentName").append(html)
+
     })
     .error(function() {
       console.log("error")
@@ -100,21 +122,7 @@ $(function() {
   })
 })
 
-function Assignment(assignment) {
-  this.id = assignment.id;
-  this.name = assignment.name
-  this.description = assignment.description
-  this.date = assignment.date
-  this.status = assignment.status
-  this.user_id = assignment.user_id
-}
 
-Assignment.prototype.formatIndex = function() {
-  // console.log(this)
-  let assignmentHTML = `<h1>${this.name}</h1>`
-
-  return assignmentHTML
-}
 
 
 

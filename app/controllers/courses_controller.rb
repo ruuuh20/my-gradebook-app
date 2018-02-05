@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
 
   #for admin to see all courses ?????
   def all_index
-    
+
     @all_courses = Course.all
   end
 
