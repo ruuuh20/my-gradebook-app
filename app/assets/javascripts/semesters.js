@@ -3,20 +3,38 @@ $(() => {
 })
 
 const bindClickHandlers = () => {
-  $("a.show_courses").on("click", function(e) {
+  // $("a.show_courses").on("click", function(e) {
+  //   e.preventDefault();
+  //   let id = $(this).attr("data-id")
+  //
+  //   $.get("/semesters/" + id + "/courses.json").success(function(json) {
+  //     // debugger
+  //   $(".courses").html("")
+  //
+  //   json.forEach(function(course) {
+  //     // debugger
+  //     $(".courses").append("<h2>" + course.name + "</h2>")
+  //   })
+  //   })
+  //
+  // })
+
+  //show list of assignments for a course
+  $("a.show_assignments").on("click", function(e) {
     e.preventDefault();
-    let id = $(this).attr("data-id")
+    let semesterId = $(this).attr("data-semesterid")
+    let courseId = $(this).attr("data-courseid")
 
-    $.get("/semesters/" + id + "/courses.json").success(function(json) {
+    $.get("/semesters/" + semesterId + "/courses/" + courseId + "/assignments.json").success(function(json) {
+      $(".load_assignments").html("")
       // debugger
-    $(".courses").html("")
 
-    json.forEach(function(course) {
-      // debugger
-      $(".courses").append("<h2>" + course.name + "</h2>")
+    json.forEach(function(assignment) {
+      $(".load_assignments").append("<h2>" + assignment.name + "</h2>")
     })
     })
 
+    
   })
 
   //clicking on Next button
@@ -33,22 +51,22 @@ const bindClickHandlers = () => {
   })
 
   // show all semesters in course catalog
-    $(".all_semesters").on("click", function(e) {
-      e.preventDefault();
-      $.get("/semesters.json").success(function(json) {
-        var $ol = $("div.semesters ol")
-        $ol.html("") // empty the ol
-        $("div.welcome").html("") //empty the welcome main page
-        // debugger
-        // var jsonKeys = Object.keys(json);
-        json.forEach(function(semester) {
-          // debugger
-          $ol.append("<li>" + semester.name + "</li>");
-        })
-      })
-
-
-    })
+    // $(".all_semesters").on("click", function(e) {
+    //   e.preventDefault();
+    //   $.get("/semesters.json").success(function(json) {
+    //     var $ol = $("div.semesters ol")
+    //     $ol.html("") // empty the ol
+    //     $("div.welcome").html("") //empty the welcome main page
+    //     // debugger
+    //     // var jsonKeys = Object.keys(json);
+    //     json.forEach(function(semester) {
+    //       // debugger
+    //       $ol.append("<li>" + semester.name + "</li>");
+    //     })
+    //   })
+    //
+    //
+    // })
 }
 
 function Assignment(assignment) {

@@ -14,6 +14,10 @@ class AssignmentsController < ApplicationController
     @course = Course.find(params[:course_id])
     @assignments = @course.assignments
     @assignments_in_order = @assignments.chronological
+    respond_to do |format|
+      format.html {:index}
+      format.json {render :json =>  @assignments}
+    end
   end
 
   def new
@@ -59,6 +63,7 @@ class AssignmentsController < ApplicationController
     @assignment = Assignment.find(params[:id])
     @semester = Semester.find(params[:semester_id])
     @course = Course.find(params[:course_id])
+
   end
 
   def edit
