@@ -133,7 +133,7 @@ $(function() {
 
     })
     .error(function() {
-      console.log("error")
+      alert("You are not authorized to create an assignment")
     })
     // debugger
     // let posting = $.post("/assignments", values);
