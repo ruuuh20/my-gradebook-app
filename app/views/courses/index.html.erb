@@ -1,7 +1,7 @@
 <% if current_user.admin? %>
   <% @courses.each do |c| %>
-    <p id="code-<%= c.id %>"></p>
     <h3> <%= c.name %> - <%= link_to "More", semester_course_path(@semester.id, c.id), :class => "js-more", :data => {:id => c.id, :semesterid => c.semester_id }  %></h3>
+    <h4 id="code-<%= c.id %>"></h4>
 
     <%= link_to "Go To Course", semester_course_path(@semester.id, c.id) %> | <%= link_to "Edit", edit_semester_course_path(@semester.id, c.id) %> | <%= link_to "Delete", semester_course_path(@semester.id, c.id), :method => 'delete' %>
   <% end %>

@@ -27,7 +27,7 @@ const bindClickHandlers = () => {
     let semesterid = $(this).attr("data-semesterid")
     // debugger
     $.get("/semesters/" + semesterid + "/courses/" + id + ".json", function(course) {
-      $("#code-" + id).html(course.name)
+      $("#code-" + id).html("Course code: " + course.code)
     })
   })
 

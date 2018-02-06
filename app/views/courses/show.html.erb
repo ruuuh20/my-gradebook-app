@@ -1,4 +1,4 @@
-<h2><%= @course.name %></h2>
+<h1><%= @course.name %> - Code: <%= @course.code %></h1>
 <h3>a description ~ ~ ~</h3>
 <h4><%= link_to "See Assignments", semester_course_assignments_path(@semester, @course), :class => "show_assignments", :data => {:courseid => @course.id, :semesterid => @semester.id  } %></h4>
 
