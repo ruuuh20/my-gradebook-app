@@ -19,6 +19,18 @@ const bindClickHandlers = () => {
   //
   // })
 
+  // clicking on More button in semesters index
+  $("a.js-more").on("click", function(e) {
+    // debugger
+    e.preventDefault();
+    let id = $(this).attr("data-id")
+    let semesterid = $(this).attr("data-semesterid")
+    // debugger
+    $.get("/semesters/" + semesterid + "/courses/" + id + ".json", function(course) {
+      $("#code-" + id).html(course.name)
+    })
+  })
+
   //show list of assignments for a course
   $("a.show_assignments").on("click", function(e) {
     e.preventDefault();
@@ -34,7 +46,7 @@ const bindClickHandlers = () => {
     })
     })
 
-    
+
   })
 
   //clicking on Next button
