@@ -6,8 +6,9 @@
 </div>
 
 <!-- <%= link_to "Next", semester_course_path(@semester, @course), :class => "js-next", :data => {:id => @course.id } %> -->
-
-<h2>Assignments</h2>
+<br>
+<br>
+<h3>Add Assignment</h3>
 
 <%= form_for [@semester, @course, @assignment], :data => {:id => @assignment.id } do |f|  %>
 <div class="field">
@@ -50,4 +51,4 @@
 </div>
 
 <br>
-<%= link_to "Go back to Courses", semester_courses_path(@semester.id, @course.id) %>
+<%= link_to "Go back to Courses", semester_courses_path(@semester.id) %>
