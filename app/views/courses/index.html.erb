@@ -3,9 +3,16 @@
     <h3> <%= c.name %> - <%= link_to "More", semester_course_path(@semester.id, c.id), :class => "js-more", :data => {:id => c.id, :semesterid => c.semester_id }  %></h3>
     <h4 id="code-<%= c.id %>"></h4>
 
-    <%= link_to "Go To Course", semester_course_path(@semester.id, c.id) %> | <%= link_to "Edit", edit_semester_course_path(@semester.id, c.id) %> | <%= link_to "Delete", semester_course_path(@semester.id, c.id), :method => 'delete' %>
+    <%= link_to "Go To Course", semester_course_path(@semester.id, c.id), :class => "show_courses", :data => {:id => c.id, :semesterid => c.semester_id } %> | <%= link_to "Edit", edit_semester_course_path(@semester.id, c.id) %> | <%= link_to "Delete", semester_course_path(@semester.id, c.id), :method => 'delete' %>
+
+    <div class="courses">
+    </div>
   <% end %>
+
+
+
   <h3><%= link_to "Create New", new_semester_course_path(@semester.id, @course) %></h3>
+
 <% else %>
   <% @courses.each do |c| %>
     <h3><%= link_to "#{c.name}", semester_course_path(@semester.id, c.id) %></h3>
@@ -13,4 +20,6 @@
 <% end %>
 
 <br>
+
+
 <%= link_to "Go back to #{@semester.name}", semester_path(@semester) %>

@@ -3,21 +3,28 @@ $(() => {
 })
 
 const bindClickHandlers = () => {
-  // $("a.show_courses").on("click", function(e) {
-  //   e.preventDefault();
-  //   let id = $(this).attr("data-id")
-  //
-  //   $.get("/semesters/" + id + "/courses.json").success(function(json) {
-  //     // debugger
-  //   $(".courses").html("")
-  //
-  //   json.forEach(function(course) {
-  //     // debugger
-  //     $(".courses").append("<h2>" + course.name + "</h2>")
-  //   })
-  //   })
-  //
-  // })
+
+  //show page for courses
+  $("a.show_courses").on("click", function(e) {
+    e.preventDefault();
+
+    let id = $(this).attr("data-id")
+    let semesterid = $(this).attr("data-semesterid")
+
+    $.get(`/semesters/${semesterid}/courses/${id}.json`, function(json) {
+
+      $(".courses").html("")
+
+
+      // debugger
+        $(".courses").append("<h2>" + json.name + "</h2>" +
+                            "<h2> Code: " + json.code + "</h2>" +
+                            "<h3> Semester code: " + json.semester_id + "</h2>"
+      )
+
+    })
+  })
+
 
   // clicking on More button in semesters index
   $("a.js-more").on("click", function(e) {
@@ -34,10 +41,10 @@ const bindClickHandlers = () => {
   //show list of assignments for a course
   $("a.show_assignments").on("click", function(e) {
     e.preventDefault();
-    let semesterId = $(this).attr("data-semesterid")
-    let courseId = $(this).attr("data-courseid")
+    const semesterId = $(this).attr("data-semesterid")
+    const courseId = $(this).attr("data-courseid")
 
-    $.get("/semesters/" + semesterId + "/courses/" + courseId + "/assignments.json").success(function(json) {
+    $.get(`/semesters/${semesterId}/courses/${courseId}/assignments.json`).success(function(json) {
       $(".load_assignments").html("")
       // debugger
 
@@ -87,7 +94,7 @@ function Assignment(assignment) {
   this.description = assignment.description
   this.date = assignment.date
   this.status = assignment.status
-  this.user_id = assignment.user_id
+  this.userId = assignment.user_id
 }
 
 Assignment.prototype.formatIndex = function() {
@@ -95,7 +102,6 @@ Assignment.prototype.formatIndex = function() {
   let html = ""
   html = `<h1>${this.name}</h1>` +
           `<h3>${this.description}</h3>` +
-          `<h3>Course id: ${this.course_id}</h3>` +
           `<h3>Due date: ${this.date}</h3>`
 
 
@@ -108,9 +114,9 @@ $(function() {
   $("#new_assignment").on("submit", function(e) {
     e.preventDefault();
     // url = $(this).url
-    var action = $(this).attr('action') + ".json"
-    let id = $(this).attr("data-id")
-    let values = $(this).serialize();
+    const action = $(this).attr('action') + ".json"
+    const id = $(this).attr("data-id")
+    const values = $(this).serialize();
     // debugger
 
     //using low-level ajax instead of $.post
@@ -120,7 +126,7 @@ $(function() {
       dataType: "json",
       method: "POST"
     })
-    .success(function(json) {
+    .success(json => {
       // console.log(json)
       // html = ""
       // html += "<li>" + json.name + "</li>"
