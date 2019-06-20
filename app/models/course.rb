@@ -14,6 +14,6 @@ class Course < ApplicationRecord
     joins(:registrations).group(:course_id).order("count(*) DESC")
   end
 
-
+  
 
 end

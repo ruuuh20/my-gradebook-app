@@ -5,9 +5,10 @@
 
     <%= link_to "Go To Course", semester_course_path(@semester.id, c.id), :class => "show_courses", :data => {:id => c.id, :semesterid => c.semester_id } %> | <%= link_to "Edit", edit_semester_course_path(@semester.id, c.id) %> | <%= link_to "Delete", semester_course_path(@semester.id, c.id), :method => 'delete' %>
 
-    <div class="courses">
-    </div>
+
   <% end %>
+  <div class="courses">
+  </div>
 
 
 

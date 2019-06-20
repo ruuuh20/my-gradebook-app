@@ -8,10 +8,10 @@ const bindClickHandlers = () => {
   $("a.show_courses").on("click", function(e) {
     e.preventDefault();
 
-    let id = $(this).attr("data-id")
-    let semesterid = $(this).attr("data-semesterid")
+    const id = $(this).attr("data-id")
+    const semesterid = $(this).attr("data-semesterid")
 
-    $.get(`/semesters/${semesterid}/courses/${id}.json`, function(json) {
+    $.get(`/semesters/${semesterid}/courses/${id}.json`, json => {
 
       $(".courses").html("")
 
@@ -30,8 +30,8 @@ const bindClickHandlers = () => {
   $("a.js-more").on("click", function(e) {
     // debugger
     e.preventDefault();
-    let id = $(this).attr("data-id")
-    let semesterid = $(this).attr("data-semesterid")
+    const id = $(this).attr("data-id")
+    const semesterid = $(this).attr("data-semesterid")
     // debugger
     $.get("/semesters/" + semesterid + "/courses/" + id + ".json", function(course) {
       $("#code-" + id).html("Course code: " + course.code)
@@ -46,10 +46,14 @@ const bindClickHandlers = () => {
 
     $.get(`/semesters/${semesterId}/courses/${courseId}/assignments.json`).success(function(json) {
       $(".load_assignments").html("")
-      // debugger
 
-    json.forEach(function(assignment) {
+      const filtered = json.filter(assignment => assignment.date.slice(0, 4) === "2017")
+
+
+    filtered.forEach(function(assignment) {
+      // debugger
       $(".load_assignments").append("<h2>" + assignment.name + "</h2>")
+
     })
     })
 

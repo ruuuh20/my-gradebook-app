@@ -9,27 +9,39 @@
 <% end %>
 
 
-  <nav>
-    <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Go To Course Catalog", semesters_path, :class => "all_semesters" %></li>
+  <nav class="navbar" role="navigation">
+   <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+    <div class="navbar-menu">
+      <div class="navbar-start">
+      <%= link_to "Home", root_path, :class => "navbar-item" %>
+      <%= link_to "Course Catalog", semesters_path, :class => "all_semesters navbar-item" %>
 
       <% if user_signed_in? %>
-
-
         <% if current_user.admin? %>
-          <li><%= link_to "Enrollments", enrollments_path(current_user) %></li>
+          <%= link_to "Enrollments", enrollments_path(current_user), :class => "navbar-item" %>
 
 
         <% end %>
-        <li><%= link_to "Dashboard", dashboard_path(current_user) %></li>
-        <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+        <%= link_to "Dashboard", dashboard_path(current_user), :class => "navbar-item" %>
+        <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class => "navbar-item" %>
       <% else %>
 
-        <li><%= link_to "Sign In", user_session_path %></li>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <%= link_to "Sign In", user_session_path, :class => "navbar-item" %>
+        <%= link_to "Sign Up", new_user_registration_path, :class => "navbar-item" %>
       <% end %>
-    </ul>
+      </div>
+    </div>
   </nav>
 
 
